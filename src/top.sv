@@ -7,7 +7,10 @@ module top #(
   parameter RESET_PC = 32'h0000
 )(
   input logic clk,
-  input logic reset_n
+  input logic reset_n,
+
+  output logic [31:0] pc,
+  output logic [31:0] instruction
 );
 
   // -----------------------------------------------------------
@@ -31,10 +34,11 @@ module top #(
   // -----------------------------------------------------------
   // Core Datapath Signals 
   // -----------------------------------------------------------
-  logic [31:0] pc, next_pc, next_seq_pc;
+  // logic [31:0] pc, next_pc, next_seq_pc;
+  logic [31:0] next_pc, next_seq_pc;
   logic pc_sel, reset_seen;
 
-  logic [31:0] instruction;
+  // logic [31:0] instruction;
   logic [6:0] opcode;
   logic [2:0] funct3;
   logic [6:0] funct7;
