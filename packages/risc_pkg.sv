@@ -18,5 +18,21 @@ package risc_pkg;
     OPCODE_JAL      = 7'h6F
   } opcode_t;
 
+  // ------------------------------------------------
+  // ALU Operation Selector
+  // ------------------------------------------------
+  typedef enum logic [3:0] {
+    ADD,
+    SUB,
+    SLL, // Shift Left Logical
+    SLT, // Set Less Than
+    SLTU, // Set Less Than Unsigned
+    XOR,
+    SRL, // Shift Right Logical
+    SRA, // Shift Right Arithmetic
+    OR,
+    AND
+  } alu_op_t;
+
 endpackage
 
