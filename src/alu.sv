@@ -45,6 +45,8 @@ module alu (
 
       SLTU: alu_res = (alu_a < alu_b) ? 32'd1 : 32'd0;
       SLT:  alu_res = (signed_a < signed_b) ? 32'd1 : 32'd0;
+
+      default: alu_res = 32'd0;
     endcase
   end
 

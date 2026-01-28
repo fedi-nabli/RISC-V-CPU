@@ -61,6 +61,9 @@ module control (
       R_SRA: ctrl_r.alu_op = SRA; 
       R_SLT: ctrl_r.alu_op = SLT; 
       R_SLTU: ctrl_r.alu_op = SLTU;
+
+      default: ; // Do nothing, it's fine
+
     endcase
   end
   
@@ -89,6 +92,8 @@ module control (
       I_LW:   {ctrl_i.mem_valid, ctrl_i.mem_size, ctrl_i.wb_src, ctrl_i.load_zero_extend} = {1'b1, WORD, WB_SRC_MEM, 1'b0}; 
       I_LBU:  {ctrl_i.mem_valid, ctrl_i.mem_size, ctrl_i.wb_src, ctrl_i.load_zero_extend} = {1'b1, BYTE, WB_SRC_MEM, 1'b1}; 
       I_LHU:  {ctrl_i.mem_valid, ctrl_i.mem_size, ctrl_i.wb_src, ctrl_i.load_zero_extend} = {1'b1, HALF_WORD, WB_SRC_MEM, 1'b1}; 
+      
+      default: ; // Do nothing, it's fine
     endcase
 
     // JALR
@@ -112,6 +117,8 @@ module control (
       S_SB: ctrl_s.mem_size = BYTE;
       S_SH: ctrl_s.mem_size = HALF_WORD;
       S_SW: ctrl_s.mem_size = WORD;
+      
+      default: ; // Do nothing, it's fine
     endcase
   end
 
@@ -141,6 +148,8 @@ module control (
       OPCODE_LUI: begin
         ctrl_u.wb_src = WB_SRC_IMM;
       end
+      
+      default: ; // Do nothing, it's fine
     endcase
   end
 

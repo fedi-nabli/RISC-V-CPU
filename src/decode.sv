@@ -11,8 +11,8 @@ module decode (
   output logic [4:0]  rs2_addr,
   output logic [4:0]  rd_addr,
   output logic [6:0]  opcode,
-  output logic [2:0]  func3,
-  output logic [6:0]  func7,
+  output logic [2:0]  funct3,
+  output logic [6:0]  funct7,
   output logic        r_type,
   output logic        i_type,
   output logic        s_type,
@@ -36,10 +36,10 @@ module decode (
   // ------------------------------------------------
   assign opcode = instruction[6:0];
   assign rd_addr = instruction[11:7];
-  assign func3 = instruction[14:12];
+  assign funct3 = instruction[14:12];
   assign rs1_addr = instruction[19:15];
   assign rs2_addr = instruction[24:20];
-  assign func7 = instruction[31:25];
+  assign funct7 = instruction[31:25];
 
   // -----------------------------------------------------
   // Immediate extractions for various instruction types 
@@ -71,6 +71,8 @@ module decode (
       OPCODE_LUI,
       OPCODE_AUIPC:   u_type = 1'b1;
       OPCODE_JAL:     j_type = 1'b1;
+
+      default: ; // Do nothing, it's fine
     endcase
   end
 
@@ -80,7 +82,7 @@ module decode (
   assign immediate = r_type ? 32'd0 :
                      i_type ? imm_i_type :
                      s_type ? imm_s_type :
-                     b_type ? imm_b_type,
+                     b_type ? imm_b_type :
                      u_type ? imm_u_type :
                               imm_j_type;
 

@@ -32,7 +32,7 @@ module instruction_memory #(
         mem[imem_addr + 3]
         };
       end else begin
-        imem_data = 31'd0
+        imem_data = 32'd0;
       end
   end 
 

@@ -31,6 +31,8 @@ module data_memory #(
         BYTE:       mem[dmem_addr] <= dmem_wr_data[7:0];
         HALF_WORD:  {mem[dmem_addr+1], mem[dmem_addr]} <= dmem_wr_data[15:0];
         WORD:       {mem[dmem_addr+3], mem[dmem_addr+2], mem[dmem_addr+1], mem[dmem_addr]} <= dmem_wr_data;
+        
+        default: ; // Do nothing, it's fine
       endcase
     end
   end
@@ -48,6 +50,7 @@ module data_memory #(
                         {{16{1'b0}}, mem[dmem_addr+1], mem[dmem_addr]} :                // LHU
                         {{16{mem[dmem_addr+1][7]}}, mem[dmem_addr+1], mem[dmem_addr]};  // LH
         WORD:      dmem_rd_data = {mem[dmem_addr+3], mem[dmem_addr+2], mem[dmem_addr+1], mem[dmem_addr]}; // LW
+        default:   dmem_rd_data = 32'd0;
       endcase
     end else begin
       dmem_rd_data = 32'd0;

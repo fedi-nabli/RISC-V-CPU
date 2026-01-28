@@ -10,7 +10,7 @@ module branch_control (
 
   // Branch instruction info
   input logic is_b_type,
-  input logic [2:0] func3,
+  input logic [2:0] funct3,
 
   // Result: is branch taken
   output logic branch_taken
@@ -26,13 +26,15 @@ module branch_control (
   always_comb begin
     taken = 1'b0;
 
-    case (func3)
+    case (funct3)
       B_BEQ   : taken = (opr_a == opr_b);
       B_BNE   : taken = (opr_a != opr_b);
       B_BLT   : taken = (a_signed < b_signed);
       B_BGE   : taken = (a_signed >= b_signed);
       B_BLTU  : taken = (opr_a < opr_b);
       B_BGEU  : taken = (opr_a >= opr_b);
+      
+      default: ; // Do nothing, it's fine
     endcase
   end
 
