@@ -37,7 +37,7 @@ module alu (
 
       SLL:  alu_res = alu_a << alu_b[4:0];
       SRL:  alu_res = alu_a >> alu_b[4:0];
-      SRA:  alu_res = signed_a >> alu_b[4:0]; // Shift Right Arithmetic
+      SRA:  alu_res = signed_a >>> alu_b[4:0]; // Shift Right Arithmetic
 
       OR:   alu_res = alu_a | alu_b;
       AND:  alu_res = alu_a & alu_b;
