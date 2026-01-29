@@ -39,6 +39,5 @@ ADDRESS    HEX CODE    ASSEMBLY               COMMENT
 [FINISH LABEL]
 0x68       00b52c23    sw a1, 44(a0)          ; Store Result (42) at mem[44]
 0x6C       00000013    addi zero, zero, 0     ; NOP (Padding)
-0x70       00000000    (uninitialized)        ; Execution runs into empty memory here...
 
 0x70       0000006f    jal zero, 0            ; Infinite Loop (Trap) to stop PC
